@@ -130,8 +130,9 @@ filterTest =
         , Test.test "The black height is consistent" <|
             \_ ->
                 Dict.fromList
-                    [ ( "4", 4 )
-                    , ( "2", 2 )
+                    [ ( "0", 0 )
+                    , ( "1", 1 )
+                    , ( "2", 0 )
                     ]
                     |> Debug.log "ok"
                     |> Dict.filter f
