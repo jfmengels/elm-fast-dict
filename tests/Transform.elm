@@ -137,7 +137,10 @@ filterTest =
                     |> Dict.filter f
                     |> Invariants.blackHeight
                     |> Expect.notEqual Nothing
-        , respectsInvariantsFuzz filteredFuzzer
+        , Invariants.respectsInvariantsFuzz2 f
+            (Fuzzers.opFuzzer
+                |> Fuzz.listOfLengthBetween 0 100
+            )
         ]
 
 

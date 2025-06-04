@@ -1,7 +1,9 @@
-module Invariants exposing (blackHeight, respectsInvariants, respectsInvariantsFuzz)
+module Invariants exposing (blackHeight, respectsInvariants, respectsInvariantsFuzz, respectsInvariantsFuzz2)
 
 import Expect exposing (Expectation)
+import FastDict as Dict
 import Fuzz exposing (Fuzzer)
+import Fuzzers exposing (applyOp)
 import Internal exposing (Dict(..), InnerDict(..), NColor(..))
 import Test exposing (Test, describe, fuzz, test)
 
@@ -79,6 +81,18 @@ respectsInvariantsFuzz fuzzer =
                 dict
                     |> noRedChildOfRedNode
                     |> Expect.equal True
+        ]
+
+
+respectsInvariantsFuzz2 f fuzzer =
+    describe "Respects the invariants"
+        [ fuzz fuzzer "The black height is consistent" <|
+            \dict ->
+                dict
+                    |> List.foldl applyOp Dict.empty
+                    |> Dict.filter f
+                    |> blackHeight
+                    |> Expect.notEqual Nothing
         ]
 
 
