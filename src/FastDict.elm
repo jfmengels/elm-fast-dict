@@ -893,7 +893,7 @@ filterHelp isGood dict =
                 ( Internal.balance nColor nKey value nLeft nRight, szL + szR + 1 )
 
             else
-                case getMinInner nRight of
+                case Debug.log "min" <| getMinInner nRight of
                     Just ( minKey, minValue ) ->
                         ( Internal.balance nColor minKey minValue nLeft (removeMin2 nRight)
                         , szL + szR
