@@ -115,12 +115,14 @@ filterTest =
             Fuzz.map (Dict.filter f) dictFuzzer
     in
     describe "filter"
-        [ fuzz dictFuzzer "Is equivalent to toList >> List.filter >> fromList" <|
+        [ fuzz Fuzzers.pairListFuzzer "Is equivalent to toList >> List.filter >> fromList" <|
             \dict ->
                 dict
+                    |> Dict.fromList
                     |> Dict.filter f
                     |> expectEqual
                         (dict
+                            |> Dict.fromList
                             |> Dict.toList
                             |> List.filter (\( k, v ) -> f k v)
                             |> Dict.fromList

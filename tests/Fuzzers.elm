@@ -1,4 +1,4 @@
-module Fuzzers exposing (Key, Value, dictFuzzer, keyFuzzer, pairListFuzzer, valueFuzzer, veryBalanced, veryUnbalanced)
+module Fuzzers exposing (Key, Value, dictFuzzer, fromListFuzzer, keyFuzzer, pairListFuzzer, valueFuzzer, veryBalanced, veryUnbalanced)
 
 import FastDict as Dict exposing (Dict)
 import Fuzz exposing (Fuzzer)
