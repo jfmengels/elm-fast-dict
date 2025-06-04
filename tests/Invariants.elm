@@ -1,4 +1,4 @@
-module Invariants exposing (respectsInvariants, respectsInvariantsFuzz)
+module Invariants exposing (blackHeight, respectsInvariants, respectsInvariantsFuzz)
 
 import Expect exposing (Expectation)
 import Fuzz exposing (Fuzzer)

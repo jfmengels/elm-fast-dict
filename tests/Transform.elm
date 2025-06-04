@@ -127,6 +127,16 @@ filterTest =
                             |> List.filter (\( k, v ) -> f k v)
                             |> Dict.fromList
                         )
+        , Test.test "The black height is consistent" <|
+            \_ ->
+                Dict.fromList
+                    [ ( "4", 4 )
+                    , ( "2", 2 )
+                    ]
+                    |> Debug.log "ok"
+                    |> Dict.filter f
+                    |> Invariants.blackHeight
+                    |> Expect.notEqual Nothing
         , respectsInvariantsFuzz filteredFuzzer
         ]
 
