@@ -135,8 +135,8 @@ filterTest =
                         , ( "1", 1 )
                         , ( "2", 0 )
                         ]
-                        |> Debug.log "ok"
                         |> Dict.filter f
+                        |> Debug.log "ok"
                         |> Invariants.blackHeight
                         |> Expect.notEqual Nothing
         , Invariants.respectsInvariantsFuzz2 f
