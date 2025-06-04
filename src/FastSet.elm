@@ -9,6 +9,7 @@ module FastSet exposing
     , map, foldl, foldr, filter, partition
     , toCoreSet, fromCoreSet
     , stoppableFoldl, stoppableFoldr
+    , oldInsert
     )
 
 {-| A set of unique values. The values can be any comparable type.
@@ -212,6 +213,11 @@ isEmpty (Set set) =
 insert : comparable -> Set comparable -> Set comparable
 insert value (Set set) =
     Set (Internal.insertNoReplace value False set)
+
+
+oldInsert : comparable -> Set comparable -> Set comparable
+oldInsert value (Set set) =
+    Set (FastDict.insert value False set)
 
 
 insertHelp : comparable -> InnerDict comparable Bool -> Maybe (InnerDict comparable Bool)
